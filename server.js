@@ -5,10 +5,13 @@ const port = 2080;
 
 //Routes
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send({
+    "app": "VUMS",
+    "uptime": `${process.uptime()} s`
+  });
 });
 
 //Server listening behavior
 app.listen(port, () => {
-  console.log(`\n[Server] now listening on ======> http://localhost:${port}\n`);
+  console.log(`\n[Dev Server] now listening on ======> http://localhost:${port}\n`);
 });
