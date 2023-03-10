@@ -1,14 +1,26 @@
+//Load environment variables
+require('dotenv').config();
+
 //Express setup
 const express = require('express');
 const app = express();
-const port = 2080;
+const port = process.env.PORT;
 
 //Routes
-app.get('/', (req, res) => {
+
+//App uptime
+app.get('/info', (req, res) => {
   res.send({
     "app": "VUMS",
     "uptime": `${process.uptime()} s`
   });
+});
+
+//App primary function
+app.post('/', (req, res) => {
+
+
+
 });
 
 //Server listening behavior
