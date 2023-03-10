@@ -9,7 +9,7 @@ const port = process.env.PORT;
 //Routes
 
 //App uptime
-app.get('/info', (req, res) => {
+app.get('/', (req, res) => {
   res.send({
     "app": "VUMS",
     "uptime": `${process.uptime()} s`
