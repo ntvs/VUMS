@@ -1,2 +1,2 @@
 # VUMS
-Video Upload Micro Service
+Video Uploading Micro Service
