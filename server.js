@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT;
 
 //Multer uploader
-const { upload, fields } = require('./uploader');
+const { upload, fields, processUpload } = require('./uploader');
 
 //Routes
 
@@ -19,6 +19,12 @@ app.get('/', (req, res) => {
   });
 });
 
+/*
+    Notes:
+    incorrect empty file fields accepted, but incorrect file fields with a file throw an error 
+    incorrect text fields accepted, empty or not
+*/
+
 //App primary function
 app.post('/', upload.fields(fields), (req, res) => {
 
@@ -29,11 +35,15 @@ app.post('/', upload.fields(fields), (req, res) => {
       "body": req.body,
       "files": req.files
     });
+  } else if (req.body) {
+    res.status(200).send({
+      "body": req.body
+    });
   } else {
     res.status(400).send({
       "msg": 'No fields submitted!',
     });
-  }  
+  }
 
 });
 
