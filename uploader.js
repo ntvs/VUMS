@@ -12,4 +12,20 @@ const fields = [
     {'name': 'file', 'maxCount': 1}
 ];
 
-module.exports = { upload, fields };
+//Error-catching middleware
+const processUpload = (req, res, next) => {
+    upload.fields(fields)(req, res, (error) => {
+
+        //Handle errors here
+        if (error instanceof multer.MulterError) {
+            res.status(500).send({
+                "error": error.message
+            });
+        } else {
+            next();
+        }
+
+    });
+};
+
+module.exports = { upload, fields, processUpload };
