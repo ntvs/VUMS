@@ -19,7 +19,7 @@ const processUpload = (req, res, next) => {
 
         //Handle errors here
         if (error instanceof multer.MulterError) {
-            res.status(500).send({
+            return res.status(500).send({
                 "error": error.message
             });
         } else {
