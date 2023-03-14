@@ -5,11 +5,12 @@ const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
 //Video upload allowed fields
+//Note: maxCount appears to be useless
 const fields = [
-    {'name': 'title', 'maxCount': 1},
-    {'name': 'description', 'maxCount': 1},
-    {'name': 'tags', 'maxCount': 1},
-    {'name': 'file', 'maxCount': 1}
+    {name: 'title', maxCount: 1},
+    {name: 'description', maxCount: 1},
+    {name: 'tags', maxCount: 1},
+    {name: 'file', maxCount: 1}
 ];
 
 //Error-catching middleware
