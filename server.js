@@ -57,7 +57,7 @@ app.get('/', (req, res) => {
 */
 
 //App primary function
-app.post('/', processUpload, (req, res) => {
+app.post('/', processUpload, async (req, res) => {
 
     //Limit number of fields which can be submitted
     if (Object.keys(req.body).length > 3) {
@@ -70,7 +70,7 @@ app.post('/', processUpload, (req, res) => {
     let {title, description, tags} = req.body;
 
     //Create object containing video metadata
-    let video = {};
+    let video = new Video();
 
     //If there is no title, return an error
     if (!(title)) {
@@ -127,12 +127,13 @@ app.post('/', processUpload, (req, res) => {
     };
     
     //Save video metadata to DB here
-    //Return video ID or URL & success message
+    await video.save();
 
-    //Return video metadata
+    //Return video ID or URL & success message
+    //or return video metadata
     return res.status(200).send({
         "msg": "Video created successfully!",
-        video
+        video //"video": video.id
     });
 
 });
