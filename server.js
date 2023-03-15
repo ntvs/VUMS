@@ -22,7 +22,7 @@ db.on("error", (e) => {
     console.log(e);
 });
 db.once("open", () => {
-    console.log("MongoDB connection established successfully.\n");
+    console.log("[Server] MongoDB connection established successfully.\n");
 });
 
 //Video model
@@ -142,5 +142,5 @@ app.post('/', processUpload, async (req, res) => {
 
 //Server listening behavior
 app.listen(port, () => {
-    console.log(`\n[Server] now listening on ======> http://localhost:${port}\n`);
+    console.log(`\n[Server] Now listening on ======> http://localhost:${port}\n`);
 });
