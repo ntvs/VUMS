@@ -16,7 +16,7 @@ To upload videos to a remote directory and archive its metadata
 - Views
 - Latest update
 
-## Missing features
+## Issues
 - Descriptions and tags can be of any length
 - Title can be of any length
 
