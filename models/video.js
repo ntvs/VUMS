@@ -11,7 +11,7 @@ const videoSchema = new mongoose.Schema({
         default: ""
     },
     tags: {
-        type: [String], // or mongoose.Types.ObjectId
+        type: [String],
         required: false,
         default: []
     },
@@ -26,7 +26,7 @@ const videoSchema = new mongoose.Schema({
         default: []
     },
     rating: {
-        type: [Number], // or mongoose.Types.ObjectId
+        type: [Number],
         required: false,
         default: [0, 0, 0, 0, 0]
     },
