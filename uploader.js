@@ -20,7 +20,7 @@ const processUpload = (req, res, next) => {
         //Handle errors here
         if (error instanceof multer.MulterError) {
             return res.status(500).send({
-                "error": error.message
+                "error": `${error.message}. Please check if you have attached more than one file; only 1 file can be uploaded.`
             });
         } else {
             next();
