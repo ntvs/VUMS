@@ -98,6 +98,9 @@ app.post('/', processUpload, (req, res) => {
         'size': req.files.file[0].size
     };
     
+    //Save video metadata to DB here
+    //Return video ID or URL & success message
+
     //Return video metadata
     return res.status(200).send({
         "msg": "Video created successfully!",
