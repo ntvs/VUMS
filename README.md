@@ -8,6 +8,7 @@ See the solution by Marcos Pereira on Stack Overflow [here](https://stackoverflo
 
 # Environment Variables Template
 PORT=
+DB_URL=
 
 ## Notes
 - A folder called `uploads/` must be in the root directory for the app to function 
