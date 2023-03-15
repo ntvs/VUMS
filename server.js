@@ -1,16 +1,41 @@
 //Load environment variables
 require('dotenv').config();
 
+//-------------------------------------------------------------------
+
 //Express setup
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 2080;
 
+//-------------------------------------------------------------------
+
+//Mongoose
+const mongoose = require('mongoose');
+
+//Mongoose establish connection
+mongoose.connect(process.env.DB_URL || "localhost");
+const db = mongoose.connection;
+
+//Mongoose connection event listeners
+db.on('error', (e) => {
+    console.log(e);
+});
+db.once('open', () => {
+    console.log('MongoDB connection established successfully.\n');
+});
+
+//-------------------------------------------------------------------
+
 //Consume JSON body
 app.use(express.json());
 
+//-------------------------------------------------------------------
+
 //Multer uploader
 const { upload, fields, processUpload } = require('./uploader');
+
+//-------------------------------------------------------------------
 
 //Routes
 
@@ -109,6 +134,7 @@ app.post('/', processUpload, (req, res) => {
 
 });
 
+//-------------------------------------------------------------------
 
 //Server listening behavior
 app.listen(port, () => {
