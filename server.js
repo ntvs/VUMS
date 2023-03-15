@@ -1,16 +1,44 @@
 //Load environment variables
-require('dotenv').config();
+require("dotenv").config();
+
+//-------------------------------------------------------------------
 
 //Express setup
-const express = require('express');
+const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 2080;
+
+//-------------------------------------------------------------------
+
+//Mongoose
+const mongoose = require("mongoose");
+
+//Mongoose establish connection
+mongoose.connect(process.env.DB_URL || "mongodb://127.0.0.1:27017");
+const db = mongoose.connection;
+
+//Mongoose connection event listeners
+db.on("error", (e) => {
+    console.log(e);
+});
+db.once("open", () => {
+    console.log("[Server] MongoDB connection established successfully.\n");
+});
+
+//Video model
+const Video = require("./models/video");
+
+//-------------------------------------------------------------------
 
 //Consume JSON body
 app.use(express.json());
 
+//-------------------------------------------------------------------
+
 //Multer uploader
-const { upload, fields, processUpload } = require('./uploader');
+const { upload, fields, processUpload } = require("./uploader");
+
+//-------------------------------------------------------------------
 
 //Routes
 
@@ -29,7 +57,7 @@ app.get('/', (req, res) => {
 */
 
 //App primary function
-app.post('/', processUpload, (req, res) => {
+app.post('/', processUpload, async (req, res) => {
 
     //Limit number of fields which can be submitted
     if (Object.keys(req.body).length > 3) {
@@ -42,7 +70,7 @@ app.post('/', processUpload, (req, res) => {
     let {title, description, tags} = req.body;
 
     //Create object containing video metadata
-    let video = {};
+    let video = new Video();
 
     //If there is no title, return an error
     if (!(title)) {
@@ -92,22 +120,27 @@ app.post('/', processUpload, (req, res) => {
 
     //Assign video file metadata 
     video.file = {
-        'encoding': req.files.file[0].encoding,
-        'mimetype': req.files.file[0].mimetype,
+        //'encoding': req.files.file[0].encoding,
+        //'mimetype': req.files.file[0].mimetype,
         'filename': req.files.file[0].filename,
         'size': req.files.file[0].size
     };
     
-    //Return video metadata
+    //Save video metadata to DB here
+    await video.save();
+
+    //Return video ID or URL & success message
+    //or return video metadata
     return res.status(200).send({
         "msg": "Video created successfully!",
-        video
+        video //"video": video.id
     });
 
 });
 
+//-------------------------------------------------------------------
 
 //Server listening behavior
 app.listen(port, () => {
-    console.log(`\n[Dev Server] now listening on ======> http://localhost:${port}\n`);
+    console.log(`\n[Server] Now listening on ======> http://localhost:${port}\n`);
 });
