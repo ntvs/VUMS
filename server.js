@@ -92,8 +92,8 @@ app.post('/', processUpload, (req, res) => {
 
     //Assign video file metadata 
     video.file = {
-        'encoding': req.files.file[0].encoding,
-        'mimetype': req.files.file[0].mimetype,
+        //'encoding': req.files.file[0].encoding,
+        //'mimetype': req.files.file[0].mimetype,
         'filename': req.files.file[0].filename,
         'size': req.files.file[0].size
     };
@@ -112,5 +112,5 @@ app.post('/', processUpload, (req, res) => {
 
 //Server listening behavior
 app.listen(port, () => {
-    console.log(`\n[Dev Server] now listening on ======> http://localhost:${port}\n`);
+    console.log(`\n[Server] now listening on ======> http://localhost:${port}\n`);
 });
