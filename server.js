@@ -14,7 +14,7 @@ const port = process.env.PORT || 2080;
 const mongoose = require('mongoose');
 
 //Mongoose establish connection
-mongoose.connect(process.env.DB_URL || "localhost");
+mongoose.connect(process.env.DB_URL || "mongodb://127.0.0.1:27017");
 const db = mongoose.connection;
 
 //Mongoose connection event listeners
