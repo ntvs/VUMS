@@ -47,7 +47,7 @@ const processUpload = (req, res, next) => {
         } else if (error) {
             //Other errors
             return res.status(400).send({
-                "error": `${error.message}.`
+                "error": `${error.message}`
             });
         } else {
             next();
