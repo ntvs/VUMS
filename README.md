@@ -4,6 +4,22 @@ Video Uploading Micro Service implemented in Express.js
 ## Purpose
 To upload videos to a remote directory and archive its metadata
 
+## Features
+- Upload files with MP4 mimetype
+- Create and store metadata about that video
+
+## Metadata
+- Title
+- Description
+- Tags
+- Rating
+- Views
+- Latest update
+
+## Missing features
+- Descriptions and tags can be of any length
+- Title can be of any length
+
 # Environment Variables Template
 - PORT=
 - DB_URL=
