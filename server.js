@@ -4,7 +4,7 @@ require('dotenv').config();
 //Express setup
 const express = require('express');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 
 //Consume JSON body
 app.use(express.json());
