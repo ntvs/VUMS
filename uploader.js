@@ -1,6 +1,6 @@
 //Initialize multer
 const multer  = require('multer');
-const MAXFILESIZE = 500000000; //1GB 1000000000
+const MAXFILESIZE = process.env.MAXFILESIZE || 500000000; //1GB 1000000000
 
 //File filter function
 function fileFilter (req, file, next) {
