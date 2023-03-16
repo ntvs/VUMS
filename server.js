@@ -20,6 +20,7 @@ const db = mongoose.connection;
 //Mongoose connection event listeners
 db.on("error", (e) => {
     console.log(e);
+    console.log("[Server] Please check if your URL is correct.\n");
 });
 db.once("open", () => {
     console.log("[Server] MongoDB connection established successfully.\n");
