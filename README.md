@@ -17,8 +17,9 @@ To upload videos to a remote directory and archive its metadata
 - Latest update
 
 ## Issues
-- Descriptions and tags can be of any length
-- Title can be of any length
+- Title, description and tags can be of any length
+- Anyone can submit any file as long as the extension is modified
+- No user system
 
 # Environment Variables Template
 - PORT=
