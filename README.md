@@ -24,6 +24,7 @@ To upload videos to a remote directory and archive its metadata
 # Environment Variables Template
 - PORT=
 - DB_URL=
+- CONTENT_DIRECTORY=
 
 ## Notes
 - A folder called `uploads/` must be in the root directory for the app to function 
