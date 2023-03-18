@@ -1,6 +1,10 @@
+//Libraries
+const path = require('path');
+
 //Initialize multer
 const multer  = require('multer');
 const MAXFILESIZE = process.env.MAXFILESIZE || 500000000; //1GB 1000000000
+const uploadPath = path.join(process.env.CONTENT_DIRECTORY) || path.join("uploads/");
 
 //File filter function
 function fileFilter (req, file, next) {
@@ -16,7 +20,7 @@ function fileFilter (req, file, next) {
 }
 
 //Initialize storage solution, file filter, file size limit
-const upload = multer({ dest: 'uploads/', fileFilter, limits: {fileSize: MAXFILESIZE} });
+const upload = multer({ dest: uploadPath, fileFilter, limits: {fileSize: MAXFILESIZE} });
 
 //Video upload allowed fields
 //Note: maxCount appears to be useless
