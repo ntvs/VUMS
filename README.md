@@ -29,6 +29,7 @@ To upload videos to a remote directory and archive its metadata
 - CLIENT_ORIGIN=
 
 ## Notes
+- ERROR: file gets saved before fields are analyzed. If any issue with fields are detected, file will remain on server.
 - A folder called `uploads/` must be in the root directory for the app to function 
 
 ### Guard clauses with Express responses
