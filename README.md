@@ -26,6 +26,7 @@ To upload videos to a remote directory and archive its metadata
 - DB_URL=
 - CONTENT_DIRECTORY=
 - MAX_FILE_SIZE=
+- CLIENT_ORIGIN=
 
 ## Notes
 - A folder called `uploads/` must be in the root directory for the app to function 
