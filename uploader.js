@@ -6,10 +6,22 @@ const multer  = require('multer');
 const MAXFILESIZE = process.env.MAX_FILE_SIZE || 500000000; //1GB 1000000000
 const uploadPath = path.join(process.env.CONTENT_DIRECTORY) || path.join("uploads/");
 
+
+
 //File filter function
 function fileFilter (req, file, next) {
 
     //console.log(file);
+
+    //This solution from Nikitas IO resolves Multer issue that happens when file upload is cancelled (residual file is not deleted)
+    //https://stackoverflow.com/a/64849651 <= Original code can be found here
+    req.on('aborted', () => {
+        file.stream.on('end', () => {
+            //console.log('File upload cancelled.')
+            next(new Error('File upload cancelled.'), false);
+        });
+        file.stream.emit('end');
+    });
 
     //Validate mimetype, otherwise throw an error
     if (file.mimetype != "video/mp4") {
@@ -19,21 +31,16 @@ function fileFilter (req, file, next) {
     }
 }
 
+
+
 //Initialize storage solution, file filter, file size limit
 const upload = multer({ dest: uploadPath, fileFilter, limits: {fileSize: MAXFILESIZE} });
 
-//Video upload allowed fields
-//Note: maxCount appears to be useless
-const fields = [
-    {name: 'title', maxCount: 1},
-    {name: 'description', maxCount: 1},
-    {name: 'tags', maxCount: 1},
-    {name: 'file', maxCount: 1}
-];
+
 
 //Error-catching middleware
 const processUpload = (req, res, next) => {
-    upload.fields(fields)(req, res, (error) => {
+    upload.single("file")(req, res, (error) => {
         
         //Handle errors here
         if (error instanceof multer.MulterError) {
@@ -60,4 +67,6 @@ const processUpload = (req, res, next) => {
     });
 };
 
-module.exports = { upload, fields, processUpload };
+
+
+module.exports = { upload, processUpload };
