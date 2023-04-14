@@ -1,7 +1,7 @@
 //Load environment variables
 require("dotenv").config();
 
-const appName = "VUMS";
+const appName = require('./package.json').name;
 
 //-------------------------------------------------------------------
 
