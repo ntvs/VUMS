@@ -11,17 +11,9 @@ Otherwise, they can simply leave the file uploaded and it will remain in their p
 - Create and store metadata about the file
 
 ## Metadata
-- Title
-- Description
-- Tags
-- Rating
-- Views
-- Latest update
-
-## Issues
-- Title, description and tags can be of any length
-- Anyone can submit any file as long as the extension is modified
-- No user system
+- filename
+- mimetype
+- filesize
 
 # Environment Variables Template
 - PORT=
@@ -31,10 +23,15 @@ Otherwise, they can simply leave the file uploaded and it will remain in their p
 - CLIENT_ORIGIN=
 
 ## Notes
-- ERROR: file gets saved before fields are analyzed. If any issue with fields are detected, file will remain on server.
 - A folder called `uploads/` must be in the root directory for the app to function 
 
 ### Guard clauses with Express responses
 Function execution does not stop once a response is sent with Express.
 To create guard clauses that stop execution once a response is sent, use `return res.send()`.
 See the solution by Marcos Pereira on Stack Overflow [here](https://stackoverflow.com/a/25038317).
+
+
+### Multer request cancellation file issue
+When a request is cancelled or terminated while a file is uploading, the part of the file which was already uploaded will remain on the server.
+This solution from Nikitas IO resolves that issue and the residual file is gets deleted.
+The solution can be found on Stack Overflow [here](https://stackoverflow.com/a/64849651).
