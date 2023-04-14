@@ -1,7 +1,8 @@
 //Load environment variables
 require("dotenv").config();
 
-const appName = require('./package.json').name;
+const package = require('./package.json');
+const appName = `${package.name}@${package.version}`;
 
 //-------------------------------------------------------------------
 
