@@ -56,7 +56,7 @@ const { processUpload } = require("./uploader");
 //App uptime
 app.get('/', (req, res) => {
     res.status(200).send({
-        "app": "VUMS",
+        "app": `${appName}`,
         "uptime": `${process.uptime()} s`
     });
 });
