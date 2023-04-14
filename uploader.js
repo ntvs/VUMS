@@ -3,7 +3,7 @@ const path = require('path');
 
 //Initialize multer
 const multer  = require('multer');
-const MAXFILESIZE = process.env.MAX_FILE_SIZE || 500000000; //1GB 1000000000
+const MAXFILESIZE = process.env.MAX_FILE_SIZE || 500_000_000; //in Bytes //1GB 1_000_000_000
 const uploadPath = path.join(process.env.CONTENT_DIRECTORY) || path.join("uploads/");
 
 
