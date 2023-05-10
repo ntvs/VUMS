@@ -6,3 +6,6 @@ node_modules
 
 #Ignore contents of uploads folder
 uploads/*
+
+#Deprecated models folder
+models
