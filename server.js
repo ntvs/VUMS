@@ -37,8 +37,10 @@ db.once("open", () => {
     console.log(`[${appName}] MongoDB connection established successfully.\n`);
 });
 
-//Video model
-const VideoFile = require("./models/videoFile");
+//Models
+const models = require("@ntvs/mvmodels");
+models.registerSchemas(mongoose);
+//const VideoFile = require("./models/videoFile");
 
 //-------------------------------------------------------------------
 
@@ -78,7 +80,7 @@ app.post('/', processUpload, async (req, res) => {
         }); 
     }
 
-    let newVideoFile = new VideoFile({
+    let newVideoFile = new mongoose.model("VideoFile")({
         "mimetype": req.file.mimetype,
         "filename": req.file.filename,
         "size": req.file.size
